@@ -1,10 +1,9 @@
 use std::collections::HashMap;
-use std::env::current_dir;
 use std::fs::File;
 use std::io::{Error, Write};
 use std::process::Command;
 use std::thread::sleep;
-use std::time::{Duration, Instant, SystemTime, UNIX_EPOCH};
+use std::time::Duration;
 
 use chrono::Local;
 
@@ -21,8 +20,8 @@ impl IntoString for Vec<u8> {
 fn main() {
     println!("Starting loop!");
 
+    let filename = format!("{}.json", Local::now().to_rfc3339());
     let mut table: HashMap<String, u32> = HashMap::new();
-    let mut filename = format!("{}.json", Local::now().to_rfc3339());
     let mut second_count = 0;
 
     loop {
